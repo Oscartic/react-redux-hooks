@@ -4,8 +4,8 @@ import {
   ADD_PRODUCT_ERROR 
 } from '../types';
 
-import axiosClient from '../config/axios'
-
+import axiosClient from '../config/axios';
+import Swal from 'sweetalert2';
 
 // Create product 
 export function createProductAction(product) {
@@ -16,9 +16,21 @@ export function createProductAction(product) {
       await axiosClient.post('productos', product)
       // if everything goes well, the state is updated
       dispatch(addProductSuccess(product))
+      // success message
+      Swal.fire(
+        'Correcto',
+        'El producto se agregó exitosamente',
+        'success'
+        )
     } catch (error) {
       // but if there is an error, the state changes
       dispatch(addProductError(true))
+      // error message
+      Swal.fire({
+        icon: 'error',
+        title: 'Hubo un problema',
+        text: "Se produjo un error al tratar de guardar el producto."
+      })
     }
   }
 }
