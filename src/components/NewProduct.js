@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Actions redux
 import { createProductAction } from '../actions/productActions';
 
 const NewProduct = () => {
 
+  // local state 
+  const [name, saveName] = useState('');
+  const [price, savePrice] = useState(0);
   //use dispatch and this new function create 
   const dispatch = useDispatch();
 
   // call action of productAction 
-  const addProduct = () => dispatch(createProductAction());
+  const addProduct = (product) => dispatch(createProductAction(product));
 
   // when user click in add product 
   const submitNewProduct = e => {
     e.preventDefault();
     // validate form
-
+    if(name.trim() === '' || price <= 0) {
+      return;
+    }
     // if not errors exist
     
     // create new product
-    addProduct();
+    addProduct({
+      name, 
+      price 
+    });
   }
 
   return ( 
@@ -39,6 +47,8 @@ const NewProduct = () => {
                   className="form-control"
                   placeholder="Nombre del producto"
                   name="name"
+                  value={name}
+                  onChange={e=> saveName(e.target.value)}
                 />
                 <label>Precio producto</label> 
                 <input 
@@ -46,6 +56,8 @@ const NewProduct = () => {
                   className="form-control"
                   placeholder="Precio"
                   name="price"
+                  value={price}
+                  onChange={e=> savePrice(Number(e.target.value))}
                 />
               </div>
               <button

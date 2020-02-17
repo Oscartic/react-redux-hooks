@@ -24,6 +24,11 @@
       "nombre": "Jugo de Fresa",
       "precio": "200",
       "id": 5
+    },
+    {
+      "name": "Panela",
+      "price": 1000,
+      "id": 6
     }
   ]
 }
