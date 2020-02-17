@@ -1,7 +1,10 @@
 import {
   ADD_PRODUCT,
   ADD_PRODUCT_SUCCESS,
-  ADD_PRODUCT_ERROR 
+  ADD_PRODUCT_ERROR,
+  ALL_PRODUCTS,
+  ALL_PRODUCTS_SUCCESS,
+  ALL_PRODUCTS_ERROR 
 } from '../types';
 
 import axiosClient from '../config/axios';
@@ -48,4 +51,33 @@ const addProductSuccess = (product) => ({
 const addProductError = (state) => ({
   type: ADD_PRODUCT_ERROR,
   payload: state
+})
+
+// Download all products of the DB
+export function getProductsAction() {
+  return async (dispatch) => {
+    dispatch( getProducts() )
+    try {
+      const res = await axiosClient.get('/productos');
+      dispatch(getProductsSuccessfully(res.data));
+    } catch (error) {
+      console.log(error)
+      dispatch(getProductsError())
+    }
+  }
+}
+
+const getProducts = () => ({
+  type: ALL_PRODUCTS,
+  payload: true
+})
+
+const getProductsSuccessfully = products => ({
+  type: ALL_PRODUCTS_SUCCESS,
+  payload: products
+})
+
+const getProductsError = () => ({
+  type: ALL_PRODUCTS_ERROR,
+  payload: true 
 })
