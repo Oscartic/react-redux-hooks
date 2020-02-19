@@ -13,6 +13,7 @@ const Products = () => {
     //call api
     const loadProducts = () => dispatch(getProductsAction() );
     loadProducts();
+    // eslint-disable-next-line
   }, []);
 
   // get list product state 
