@@ -29,8 +29,8 @@ const NewProduct = ({history}) => {
     
     // create new product
     addProduct({
-      name, 
-      price 
+      nombre: name, 
+      precio: price 
     });
     // redirect to product list
     history.push('/')

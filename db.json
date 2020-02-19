@@ -3,22 +3,22 @@
     {
       "id": 1,
       "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
+      "precio": "1800"
     },
     {
       "id": 2,
-      "nombre": "Jugo de Naranja",
-      "precio": "1"
+      "nombre": "Jugo de Frutilla",
+      "precio": "1500"
     },
     {
+      "id": 3,
       "nombre": "Jugo de Naranja",
-      "precio": "300",
-      "id": 3
+      "precio": "1300"
     },
     {
+      "id": 4,
       "nombre": "Rib Eye 800g",
-      "precio": "200",
-      "id": 4
+      "precio": "1200"
     },
     {
       "nombre": "Jugo de Fresa",
@@ -26,39 +26,9 @@
       "id": 5
     },
     {
-      "name": "Panela",
-      "price": 1000,
-      "id": 6
-    },
-    {
-      "name": "Carne",
-      "price": 2500,
-      "id": 7
-    },
-    {
-      "name": "9999",
-      "price": 44,
-      "id": 8
-    },
-    {
-      "name": "9999",
-      "price": 44,
-      "id": 9
-    },
-    {
-      "name": "9999",
-      "price": 44,
-      "id": 10
-    },
-    {
-      "name": "jugo de borojo",
-      "price": 1200,
-      "id": 11
-    },
-    {
-      "name": "Leche",
-      "price": 1200,
-      "id": 12
+      "id": 6,
+      "nombre": "Coco",
+      "precio": "900"
     }
   ]
 }

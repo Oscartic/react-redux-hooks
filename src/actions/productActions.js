@@ -4,7 +4,14 @@ import {
   ADD_PRODUCT_ERROR,
   ALL_PRODUCTS,
   ALL_PRODUCTS_SUCCESS,
-  ALL_PRODUCTS_ERROR 
+  ALL_PRODUCTS_ERROR,
+  DELETE_PRODUCT,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_ERROR, 
+  EDIT_PRODUCT,
+  EDIT_PRODUCT_START,
+  EDITED_PRODUCT_SUCCESS,
+  EDITED_PRODUCT_ERROR,
 } from '../types';
 
 import axiosClient from '../config/axios';
@@ -80,4 +87,73 @@ const getProductsSuccessfully = products => ({
 const getProductsError = () => ({
   type: ALL_PRODUCTS_ERROR,
   payload: true 
+})
+// Select and Delete product 
+export function deleteProductAction(id) {
+  return async (dispatch) => {
+    dispatch(deleteProduct(id));
+
+    try {
+      await axiosClient.delete(`/productos/${id}`);
+      dispatch(deleteProductSuccess());
+      // id delete 
+      Swal.fire(
+        'Eliminado',
+        'El producto se elimino',
+        'success'
+      )
+    } catch (error) {
+      console.log(error)
+      dispatch(deleteProductError());
+    }
+
+  }
+}
+
+const deleteProduct = (id) => ({
+  type: DELETE_PRODUCT,
+  payload: id
+})
+
+const deleteProductSuccess = () => ({
+  type: DELETE_PRODUCT_SUCCESS
+})
+
+const deleteProductError = () => ({
+  type: DELETE_PRODUCT_ERROR,
+  payload: true 
+})
+
+//put product in edit state 
+export function getEditProduct(product) {
+  return(dispatch) => {
+    dispatch(getEditProductAction(product))
+  }
+}
+
+const getEditProductAction = product => ({
+  type: EDIT_PRODUCT,
+  payload: product
+})
+
+// edit one api and state record
+export function editProductAction(product) {
+  return async (dispatch) => {
+    dispatch(editProduct())
+    try {
+      const res = await axiosClient.put(`/productos/${product.id}`, product);
+      dispatch(editProductSuccess(product))
+    } catch (error) {
+      
+    }
+  }
+}
+
+const editProduct = () => ({
+  type: EDIT_PRODUCT_START
+})
+
+const editProductSuccess = product => ({
+  type: EDITED_PRODUCT_SUCCESS,
+  payload: product
 })
